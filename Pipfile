@@ -7,6 +7,13 @@ verify_ssl = true
 
 [packages]
 chatterbot = "==1.0.4"
+tensorflow = "*"
+rasa = "*"
+text = "*"
+rasa-nlu = "*"
+spacy = {extras = ["lookups"],version = "*"}
+spacy-lookups-data = "*"
+lookups = "*"
 
 [requires]
 python_version = "3.8"
