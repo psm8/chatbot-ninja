@@ -8,4 +8,10 @@ class spaCyTreeNode():
     self.qa_tag = qa_tag
 
   def similarityValue(self, other):
-      self.doc.similarity(other.doc)
+    self.doc.similarity(other.doc)
+
+  def tokenTextAndTags(self):
+    dict ={}
+    for token in self.doc:
+      dict[token.text] = token.pos_
+    return dict
