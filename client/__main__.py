@@ -42,10 +42,11 @@ def main():
     while current_node:
         print(current_node.getData().doc.text)
         preprocessed_input = preprocess.preprocess(input(">"))
-        print(SpaCyTreeNode(preprocessed_input).similarityValue(current_node.getData()))
+        #print(SpaCyTreeNode(preprocessed_input).similarityValue(current_node.getData()))
+        temp_node = current_node
         current_node = search_branch(current_node, SpaCyTreeNode(preprocessed_input))
         if not current_node:
-            current_node = search_other_branches(root, SpaCyTreeNode(preprocessed_input))
+            current_node = search_other_branches(temp_node, SpaCyTreeNode(preprocessed_input))
 
     print("IDK")
 

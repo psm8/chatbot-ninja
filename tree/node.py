@@ -5,11 +5,20 @@ class Node:
         self.parent = None
         self.level = 0
 
+    def __eq__(self, other):
+        if isinstance(other, Node):
+            return self.data.doc.text == other.data.doc.text
+        return False
+
+    def __str__(self):
+        str = self.data.doc.text + " "
+        return str
+
     def getData(self):
         return self.data
 
     def getChildren(self):
-        return self.children
+        return self.children.copy()
 
     def getParent(self):
         return self.parent
