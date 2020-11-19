@@ -40,26 +40,30 @@ def main():
     root = pickle.load(open("temp_save.p", "rb"))
     current_node = root
     temp_node=root
-
+    helped = False
     while current_node:
         print(current_node.getData().doc.text)
         preprocessed_input = preprocess.preprocess(input(">"))
         #print(SpaCyTreeNode(preprocessed_input).similarityValue(current_node.getData()))
         temp_node = current_node
-        if current_node.check_solution(): # if len == 0 false and > similiarity
-            if current_node.control_question():
+        if len(current_node.getData().solutions) > 0: # if len == 0 false and > similiarity
+            print(current_node.getData().solutions[0].text)
+            control_question = input("*Was it helpful?** >")
+            if control_question == 'yes':
+                helped = True
                 break
-
-        #no
         current_node = current_node.search_branch(SpaCyTreeNode(preprocessed_input))
         if not current_node:
             current_node = temp_node.search_other_branches(SpaCyTreeNode(preprocessed_input))
 
-    print("Sorry I can't help you, Can you tell me how to solve it?")
-    user_solution = preprocess.preprocess(input("*your solution** >"))
-    temp_node.generate_question(user_solution)
 
-    pickle.dump(root, open("temp_save.p", "wb"))
+    if not helped:
+        print("Sorry I can't help you, Can you tell me how to solve it?")
+        user_solution = preprocess.preprocess(input("*your solution** >"))
+        temp_node.generate_question(user_solution)
+        pickle.dump(root, open("temp_save.p", "wb"))
+    else:
+        print("You're welcome")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Chatbot Ninja")
