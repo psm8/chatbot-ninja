@@ -1,7 +1,10 @@
-def search_tree(node):
-    list = node.getChildren()
+def search_tree(node, data):
+    similarity = 0
     best_match = None
+    list = node.getChildren()
     while len(list) > 0:
+        if data.similarityValue(list[0].getData) > similarity:
+            best_match = list[0]
         current_node = list[0]
         current_node_children = current_node.getChildren()
         list.pop(0)
