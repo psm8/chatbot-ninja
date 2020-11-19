@@ -1,15 +1,16 @@
 import argparse
 
 from preprocess.preprocess import Preprocess
+from dqn.conversation_manager import DQNAgent
 
 
 def main():
 
     preprocess = Preprocess()
+    dqn_agent = DQNAgent()
 
     while True:
         preprocessed_input = preprocess.preprocess(input(">"))
-        print("Tak dla testu i zebyscie widzieli co jest mozliwe to nizej wypisuje, raczej do duzej modyfikacji")
         for token in preprocessed_input:
             print(token.text, token.lemma_, token.pos_, token.tag_, token.dep_,
                   token.shape_, token.is_alpha, token.is_stop)

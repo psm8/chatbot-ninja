@@ -9,6 +9,8 @@ verify_ssl = true
 spacy = {extras = ["lookups"],version = "*"}
 spacy-lookups-data = "*"
 numpy = "==1.19.3"
+keras = "*"
+transformers = "*"
 
 [requires]
 python_version = "3.8"
