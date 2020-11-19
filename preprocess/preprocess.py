@@ -12,7 +12,6 @@ class Preprocess:
         self.nlp.add_pipe(self.nlp.create_pipe("sentencizer"))
 
     def preprocess(self, input):
-        print(self.nlp.pipe_names)
         doc = self.nlp(input)
 
         return doc
