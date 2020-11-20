@@ -1,28 +1,27 @@
 import argparse
 from tree.node import Node
 from tree.treeMechanics import search_tree
-from preprocess.preprocess import Preprocess
 from sentence.spaCyTreeNode import SpaCyTreeNode
 import pickle
 
-def init_tree(preprocess):
-    root = Node(SpaCyTreeNode(preprocess.preprocess("How can I help You?")))
+def init_tree():
+    root = Node("How can I help You?")
 
-    child1 = Node(SpaCyTreeNode(preprocess.preprocess("So the problem is cornering. Can you add more details?")))
-    child2 = Node(SpaCyTreeNode(preprocess.preprocess("So your car struggle onn straights. Can you add more details?")))
-    child3 = Node(SpaCyTreeNode(preprocess.preprocess("So you got problems on different surface or in rain. Can you add more details?")))
-    child4 = Node(SpaCyTreeNode(preprocess.preprocess("You can't get the feel of brakes. Can you add more detail?")))
+    child1 = Node("So the problem is cornering. Can you add more details?")
+    child2 = Node("So your car struggle onn straights. Can you add more details?")
+    child3 = Node("So you got problems on different surface or in rain. Can you add more details?")
+    child4 = Node("You can't get the feel of brakes. Can you add more detail?")
 
     root.addChild(child1)
     root.addChild(child2)
     root.addChild(child3)
     root.addChild(child4)
 
-    child11 = Node(SpaCyTreeNode(preprocess.preprocess("So you are understeering. Does this happen on fast or slow corners?")))
-    child12 = Node(SpaCyTreeNode(preprocess.preprocess("Oversteer")))
-    child21 = Node(SpaCyTreeNode(preprocess.preprocess("Top Speed")))
-    child31 = Node(SpaCyTreeNode(preprocess.preprocess("Bumps and curbs")))
-    child41 = Node(SpaCyTreeNode(preprocess.preprocess("Tyre Lockup")))
+    child11 = Node("So you are understeering. Does this happen on fast or slow corners?")
+    child12 = Node("Oversteer")
+    child21 = Node("Top Speed")
+    child31 = Node("Bumps and curbs")
+    child41 = Node("Tyre Lockup")
 
     child1.addChild(child11)
     child1.addChild(child12)
@@ -34,32 +33,30 @@ def init_tree(preprocess):
 
 def main():
 
-    preprocess = Preprocess()
 
-    #init_tree(preprocess)
+    #init_tree()
     root = pickle.load(open("temp_save.p", "rb"))
     current_node = root
     temp_node=root
     helped = False
     while current_node:
-        print(current_node.getData().doc.text)
-        preprocessed_input = preprocess.preprocess(input(">"))
-        #print(SpaCyTreeNode(preprocessed_input).similarityValue(current_node.getData()))
+        print(current_node)
+        user_input = input(">")
         temp_node = current_node
         if len(current_node.getData().solutions) > 0: # if len == 0 false and > similiarity
             print(current_node.getData().solutions[0].text)
-            control_question = input("*Was it helpful?** >")
+            control_question = input("*Was it helpful?** (yes/no) >")
             if control_question == 'yes':
                 helped = True
                 break
-        current_node = current_node.search_branch(SpaCyTreeNode(preprocessed_input))
+        current_node = current_node.search_branch(user_input)
         if not current_node:
-            current_node = temp_node.search_other_branches(SpaCyTreeNode(preprocessed_input))
+            current_node = temp_node.search_other_branches(user_input)
 
 
     if not helped:
         print("Sorry I can't help you, Can you tell me how to solve it?")
-        user_solution = preprocess.preprocess(input("*your solution** >"))
+        user_solution = input("*your solution** >")
         temp_node.generate_question(user_solution)
         pickle.dump(root, open("temp_save.p", "wb"))
     else:

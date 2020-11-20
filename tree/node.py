@@ -3,23 +3,23 @@ from sentence.spaCyTreeNode import SpaCyTreeNode
 
 class Node:
     def __init__(self, data):
-        self.data = data
+        self.data = SpaCyTreeNode(data)
         self.children = []
         self.parent = None
         self.level = 0
 
     def __eq__(self, other):
         if isinstance(other, Node):
-            return self.data.doc.text == other.data.doc.text
+            return self.data == other.data
         return False
 
     def __str__(self):
-        str = self.data.doc.text + " "
-        return str
+        return str(self.data)
 
     def getData(self):
         return self.data
 
+    # jak to dziala skoro to jest kopia xd przypisanie best_match powinno nie dzialac
     def getChildren(self):
         return self.children.copy()
 
@@ -34,31 +34,16 @@ class Node:
         child.parent = self
         child.level = self.level + 1
 
-    def search_tree(self, data):
-        similarity = 0
-        best_match = None
-        list = self.getChildren()
-        while len(list) > 0:
-            if data.similarityValue(list[0].getData) > similarity:
-                best_match = list[0]
-            current_node = list[0]
-            current_node_children = current_node.getChildren()
-            list.pop(0)
-            if len(current_node_children) > 0:
-                for i in range(0, len(current_node_children)):
-                    list.insert(0, current_node_children[i])
-
-        return best_match
-
     def search_branch(self, data):
         base_boarder = 0.2
         similarity = base_boarder
         best_match = None
         list = self.getChildren()
         for i in range(0, len(list)):
-            if (data.similarityValue(list[i].getData())) > similarity:
+            result = list[i].getData().similarityValue(data)
+            if result > similarity:
                 best_match = list[i]
-                similarity = data.similarityValue(list[i].getData())
+                similarity = result
         print(similarity)
         return best_match
 
@@ -74,9 +59,10 @@ class Node:
         list = current_node.getChildren()
 
         while list[0].getLevel() <= self.getLevel():
-            if data.similarityValue(list[0].getData()) > similarity and not self == list[0]:
+            result = list[0].getData().similarityValue(data)
+            if result > similarity and not self == list[0]:
                 best_match = list[0]
-                similarity = data.similarityValue(list[0].getData())
+                similarity = result
             current_node = list[0]
             current_node_children = current_node.getChildren()
 
@@ -100,7 +86,7 @@ class Node:
 
     def generate_question(self, user_solution):
         new_question = self.data.generate_question(user_solution)
-        new_child = Node(SpaCyTreeNode(new_question))
+        new_child = Node(new_question)
         self.addChild(new_child)
         new_child.add_solutions(user_solution)
 

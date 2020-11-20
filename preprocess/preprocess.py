@@ -1,17 +1,19 @@
 import spacy
 
 
-class Preprocess:
+nlp = spacy.load("en_core_web_sm")
+# tagger parser and ner added by default
+# self.nlp.add_pipe(self.nlp.create_pipe("entity_linker"))
+# self.nlp.add_pipe(self.nlp.create_pipe("textcat"))
+nlp.add_pipe(nlp.create_pipe("entity_ruler"))
+nlp.add_pipe(nlp.create_pipe("sentencizer"))
 
-    def __init__(self):
-        self.nlp = spacy.load("en_core_web_sm")
-        # tagger parser and ner added by default
-        # self.nlp.add_pipe(self.nlp.create_pipe("entity_linker"))
-        # self.nlp.add_pipe(self.nlp.create_pipe("textcat"))
-        self.nlp.add_pipe(self.nlp.create_pipe("entity_ruler"))
-        self.nlp.add_pipe(self.nlp.create_pipe("sentencizer"))
+def preprocess(input):
+    doc = nlp(input)
+    return doc
 
-    def preprocess(self, input):
-        doc = self.nlp(input)
-
-        return doc
+def tokenize(data):
+    dict = {}
+    for token in data:
+        dict[token.text] = token.pos_
+    return dict

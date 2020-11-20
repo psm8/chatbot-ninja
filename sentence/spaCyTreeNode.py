@@ -1,25 +1,31 @@
-from preprocess.preprocess import Preprocess
+from preprocess import preprocess
 
-class SpaCyTreeNode():
-  def __init__(self, doc):
 
-    # here we will save the whole document to ensure that we have all necessary values
-    self.doc = doc
+class SpaCyTreeNode:
+
+  def __init__(self, text):
+    self.doc = preprocess.preprocess(text)
     self.solutions = []
 
+  def __eq__(self, other):
+    if isinstance(other, SpaCyTreeNode):
+      return self.doc.text == other.doc.text
+    return False
+
+  def __str__(self):
+    return self.doc.text
+
+
   def similarityValue(self, other):
-    return self.doc.similarity(other.doc)
+    return self.doc.similarity(preprocess.preprocess(other))
 
   def tokenTextAndTags(self):
-    dict ={}
-    for token in self.doc:
-      dict[token.text] = token.pos_
-    return dict
+    return preprocess.tokenize(self.doc)
 
   def add_solution(self, solution):
-    self.solutions.append(solution)
+    self.solutions.append(preprocess.preprocess(solution))
 
   def generate_question(self, user_solution):
-    preprocess = Preprocess()
-    user_question = preprocess.preprocess(input("What would you ask next user to get your answer? >"))
+    future_solution = preprocess.preprocess(user_solution)
+    user_question = input("What would you ask next user to get your answer? >")
     return user_question
