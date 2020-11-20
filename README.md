@@ -9,6 +9,7 @@ Manual:
 3. Execute `pipenv install` to install dependencies into virtual environment
 4. Make sure you are using right python version
 5. Run python -m spacy download en_core_web_sm
+6. Install correct version of pytorch using https://pytorch.org/
 
 Requirements:
 - python 3.8.1
