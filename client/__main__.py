@@ -3,8 +3,7 @@ from tree.node import Node
 from tree.treeMechanics import search_tree
 from sentence.spaCyTreeNode import SpaCyTreeNode
 import pickle
-from utils.utils import ask_if_it_helped
-from preprocess import preprocess
+from utils.utils import ask_if_it_helped, get_doc_from_input
 
 def init_tree():
     root = Node("How can I help You?")
@@ -38,31 +37,26 @@ def main():
     # obiekty = [preprocess.preprocess("witam"), preprocess.preprocess("cie"), preprocess.preprocess("w dupie")]
     # obiekty.sort(key=sort_by_similarity)
 
-    while True:
-        #init_tree()
-        root = pickle.load(open("temp_save.p", "rb"))
-        current_node = root
-        temp_node=root
-        helped = False
-        while current_node:
-            print(current_node)
-            user_input = input(">")
-            temp_node = current_node.getData()
-            if current_node.check_for_solutions(user_input) is not None:
-                break
-            else:
-                current_node = current_node.search_branch(user_input)
-                if not current_node:
-                    current_node = temp_node.search_other_branches(user_input)
-
-
-        if not helped:
-            print("Sorry I can't help you, Can you tell me how to solve it?")
-            user_solution = input("*your solution** >")
-            temp_node.generate_question(user_solution)
-            pickle.dump(root, open("temp_save.p", "wb"))
+    #init_tree()
+    root = pickle.load(open("temp_save.p", "rb"))
+    current_node = root
+    temp_node=root
+    while current_node:
+        print(current_node)
+        user_input = get_doc_from_input(">")
+        temp_node = current_node
+        if current_node.check_for_solutions(user_input) is not None:
+            return
         else:
-            print("You're welcome")
+            current_node = current_node.search_branch(user_input)
+            if not current_node:
+                current_node = temp_node.search_other_branches(user_input)
+
+
+    print("Sorry I can't help you, Can you tell me how to solve it?")
+    user_solution = get_doc_from_input("*your solution** >")
+    temp_node.generate_question(user_solution)
+    pickle.dump(root, open("temp_save.p", "wb"))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Chatbot Ninja")
