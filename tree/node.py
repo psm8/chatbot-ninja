@@ -40,7 +40,7 @@ class Node:
         best_match = None
         list = self.getChildren()
         for i in range(0, len(list)):
-            result = list[i].getData().similarityValue(data)
+            result = list[i].getData().similarity(data)
             if result > similarity:
                 best_match = list[i]
                 similarity = result
@@ -58,7 +58,7 @@ class Node:
         list = current_node.getChildren()
 
         while list[0].getLevel() <= self.getLevel():
-            result = list[0].getData().similarityValue(data)
+            result = list[0].getData().similarity(data)
             if result > similarity and not self == list[0]:
                 best_match = list[0]
                 similarity = result
@@ -90,7 +90,6 @@ class Node:
         new_child.add_solutions(user_solution)
 
     def pick_solution(self, data):
-        data = preprocess.preprocess(data)
         best_solution = self.getData().solutions[0]
         for i in range(0, len(self.getData().solutions)):
             if best_solution.similarity(data) < self.getData().solutions[i].similarity(data):
