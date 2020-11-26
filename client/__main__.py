@@ -3,7 +3,8 @@ from tree.node import Node
 from tree.treeMechanics import search_tree
 from sentence.spaCyTreeNode import SpaCyTreeNode
 import pickle
-from utils.utils import ask_if_it_helped, get_doc_from_input
+from utils.utils import ask_if_it_helped
+from preprocess import preprocess
 
 def init_tree():
     root = Node("How can I help You?")
@@ -34,6 +35,9 @@ def init_tree():
 
 def main():
 
+    # obiekty = [preprocess.preprocess("witam"), preprocess.preprocess("cie"), preprocess.preprocess("w dupie")]
+    # obiekty.sort(key=sort_by_similarity)
+
     while True:
         #init_tree()
         root = pickle.load(open("temp_save.p", "rb"))
@@ -42,15 +46,14 @@ def main():
         helped = False
         while current_node:
             print(current_node)
-            user_input = get_doc_from_input(">")
-            temp_node = current_node
+            user_input = input(">")
+            temp_node = current_node.getData()
             if current_node.check_for_solutions(user_input) is not None:
-                if ask_if_it_helped():
-                    helped = True
-                    break
-            current_node = current_node.search_branch(user_input)
-            if not current_node:
-                current_node = temp_node.search_other_branches(user_input)
+                break
+            else:
+                current_node = current_node.search_branch(user_input)
+                if not current_node:
+                    current_node = temp_node.search_other_branches(user_input)
 
 
         if not helped:

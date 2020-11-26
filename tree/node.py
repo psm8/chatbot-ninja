@@ -1,5 +1,4 @@
 from sentence.spaCyTreeNode import SpaCyTreeNode
-from preprocess import preprocess
 
 class Node:
     def __init__(self, data):
@@ -40,7 +39,7 @@ class Node:
         best_match = None
         list = self.getChildren()
         for i in range(0, len(list)):
-            result = list[i].getData().doc.similarity(data)
+            result = list[i].getData().similarityValue(data)
             if result > similarity:
                 best_match = list[i]
                 similarity = result
@@ -58,7 +57,7 @@ class Node:
         list = current_node.getChildren()
 
         while list[0].getLevel() <= self.getLevel():
-            result = list[0].getData().doc.similarity(data)
+            result = list[0].getData().similarityValue(data)
             if result > similarity and not self == list[0]:
                 best_match = list[0]
                 similarity = result
@@ -89,17 +88,9 @@ class Node:
         self.addChild(new_child)
         new_child.add_solutions(user_solution)
 
-    def pick_solution(self, data):
-        best_solution = self.getData().solutions[0]
-        for i in range(0, len(self.getData().solutions)):
-            if best_solution.similarity(data) < self.getData().solutions[i].similarity(data):
-                best_solution = self.getData().solutions[i]
-        print(best_solution.text)
-        return best_solution
-
     def check_for_solutions(self, data):
         if len(self.getData().solutions) > 0:
-            return self.pick_solution(data)
+            return self.getData().pick_solution(data)
         return None
 
     def get_root(self):
