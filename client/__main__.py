@@ -49,10 +49,8 @@ def main():
             if not current_node:
                 current_node = temp_node.search_other_branches(user_input)
 
+    add_solution_to_tree(root)
 
-    print("Sorry I can't help you, Can you tell me how to solve it?")
-    user_solution = get_doc_from_input("*your solution** >")
-    temp_node.generate_question(user_solution)
     pickle.dump(root, open("temp_save.p", "wb"))
 
 if __name__ == "__main__":
@@ -68,8 +66,7 @@ main()
 # main function to start adding solution
 def add_solution_to_tree(root:Node):
     print("Sorry I can't help you, Can you tell me how to solve it?")
-    user_solution = input("*your solution** >")
-    # TODO generate doc
+    user_solution = get_doc_from_input("*your solution** >")
     root_children_sorted = get_all_root_children_listed_by_similarity(root, user_solution)
     choosen_node = search_good_node_to_add_solution_to_in_branch(root_children_sorted[0], 0.8, user_solution)
 
@@ -112,8 +109,7 @@ def nodes_and_similarity_value_lists_to_dictionary(test_values, test_keys):
 
 def ask_for_question(root: Node, user_solution):
     print("Sorry I can't find a question suited to add your solution, Can you tell me how should I ask for this problem?")
-    user_question = input("*your question** >")
-    # TODO generate doc
+    user_question = get_doc_from_input("*your solution** >")
     choosen_node = search_tree(root, user_question)
     choosen_node.addChild(user_question)
     children = choosen_node.getChildren()
