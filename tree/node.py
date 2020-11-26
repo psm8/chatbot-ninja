@@ -104,6 +104,12 @@ class Node:
             return True
         return False
 
+    def get_root(self):
+        current_node = self
+        while current_node.getParent():
+            current_node = current_node.getParent()
+        return current_node
+
 
 
 
