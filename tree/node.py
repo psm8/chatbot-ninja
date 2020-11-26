@@ -40,7 +40,7 @@ class Node:
         best_match = None
         list = self.getChildren()
         for i in range(0, len(list)):
-            result = list[i].getData().similarity(data)
+            result = list[i].getData().doc.similarity(data)
             if result > similarity:
                 best_match = list[i]
                 similarity = result
@@ -59,7 +59,7 @@ class Node:
         list = current_node.getChildren()
 
         while list[0].getLevel() <= self.getLevel():
-            result = list[0].getData().similarity(data)
+            result = list[0].getData().doc.similarity(data)
             if result > similarity and not self == list[0]:
                 best_match = list[0]
                 similarity = result
