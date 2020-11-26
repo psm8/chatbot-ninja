@@ -7,7 +7,7 @@ model_args = {
     "reprocess_input_data": True,
     "overwrite_output_dir": True,
     "max_seq_length": 128,
-    "eval_batch_size": 128,
+    "eval_batch_size": 32,
     "num_train_epochs": 1,
     "save_eval_checkpoints": False,
     "use_multiprocessing": False,
@@ -19,7 +19,7 @@ model_args = {
     "num_return_sequences": 3,
 }
 
-model = T5Model("test_outputs_large/best_model", args=model_args)
+model = T5Model("outputs/checkpoint-15000", args=model_args, use_cuda=False)
 
 df = pd.read_csv("data/eval_df.tsv", sep="\t").astype(str)
 preds = model.predict(

@@ -14,7 +14,6 @@ transformers = "*"
 simpletransformers = "*"
 tokenizers = "*"
 kaggle = "*"
-torch = "*"
 pytorch-pretrained-bert = "*"
 
 [requires]
