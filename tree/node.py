@@ -7,6 +7,7 @@ class Node:
         self.children = []
         self.parent = None
         self.level = 0
+        self.base_boarder = 0.2
 
     def __eq__(self, other):
         if isinstance(other, Node):
@@ -35,8 +36,7 @@ class Node:
         child.level = self.level + 1
 
     def search_branch(self, data):
-        base_boarder = 0.2
-        similarity = base_boarder
+        similarity = self.base_boarder
         best_match = None
         list = self.getChildren()
         for i in range(0, len(list)):
@@ -48,8 +48,7 @@ class Node:
         return best_match
 
     def search_other_branches(self, data):
-        base_boarder = 0.2
-        similarity = base_boarder
+        similarity = self.base_boarder
         best_match = None
         current_node = self
 
@@ -99,10 +98,10 @@ class Node:
         print(best_solution.text)
         return best_solution
 
-    def check_for_solutions(self):
+    def check_for_solutions(self, data):
         if len(self.getData().solutions) > 0:
-            return True
-        return False
+            return self.pick_solution(data)
+        return None
 
     def get_root(self):
         current_node = self

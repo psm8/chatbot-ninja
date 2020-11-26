@@ -44,8 +44,7 @@ def main():
             print(current_node)
             user_input = input(">")
             temp_node = current_node
-            if current_node.check_for_solutions():
-                temp_node.pick_solution(user_input)
+            if current_node.check_for_solutions(user_input) is not None:
                 if ask_if_it_helped():
                     helped = True
                     break

@@ -1,0 +1,31 @@
+{
+  "question": "How can I help You?",
+  "children": [
+    {
+      "question": "So the problem is cornering. Can you add more details?",
+      "solutions" : [],
+      "children":[
+        {
+          "question": "So your car struggle onn straights. Can you add more details?",
+          "solutions" : [],
+          "children":[]
+        }
+      ]
+    },
+    {
+      "question": "So your car struggle onn straights. Can you add more details?",
+      "solutions" : [],
+      "children":[]
+    },
+    {
+      "question": "So you got problems on different surface or in rain. Can you add more details?",
+      "solutions" : [],
+      "children":[]
+    },
+    {
+      "question": "You can't get the feel of brakes. Can you add more detail?",
+      "solutions" : [],
+      "children":[]
+    }
+  ],
+}
