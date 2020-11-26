@@ -3,9 +3,11 @@ from utils.utils import ask_if_it_helped
 
 class SpaCyTreeNode:
 
-  def __init__(self, text):
+  def __init__(self, text, solutions=None):
     self.doc = preprocess.preprocess(text)
-    self.solutions = []
+    if solutions is None:
+      self.solutions = []
+
 
   def __eq__(self, other):
     if isinstance(other, SpaCyTreeNode):
@@ -34,8 +36,8 @@ class SpaCyTreeNode:
     #     max_similarity = best_solution.similarity(user_problem)
     for solution in self.solutions:
       print(solution.text)
-      if solution > :
-        return solution
+      # if solution > :
+    return solution
 
   def tokenTextAndTags(self):
     return preprocess.tokenize(self.doc)

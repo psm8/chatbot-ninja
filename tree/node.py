@@ -1,9 +1,10 @@
 from sentence.spaCyTreeNode import SpaCyTreeNode
 
 class Node:
-    def __init__(self, data):
+    def __init__(self, data, children=None):
         self.data = SpaCyTreeNode(data)
-        self.children = []
+        if children is None:
+            self.children = []
         self.parent = None
         self.level = 0
         self.base_boarder = 0.2
