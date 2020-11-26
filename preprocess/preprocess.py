@@ -8,9 +8,10 @@ nlp = spacy.load("en_core_web_sm")
 nlp.add_pipe(nlp.create_pipe("entity_ruler"))
 nlp.add_pipe(nlp.create_pipe("sentencizer"))
 
+
 def preprocess(input):
-    doc = nlp(input)
-    return doc
+    return nlp(input)
+
 
 def tokenize(data):
     dict = {}
