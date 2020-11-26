@@ -3,7 +3,7 @@ from tree.node import Node
 from tree.treeMechanics import search_tree
 from sentence.spaCyTreeNode import SpaCyTreeNode
 import pickle
-from utils.utils import ask_if_it_helped
+from utils.utils import ask_if_it_helped, get_doc_from_input
 
 def init_tree():
     root = Node("How can I help You?")
@@ -42,7 +42,7 @@ def main():
         helped = False
         while current_node:
             print(current_node)
-            user_input = input(">")
+            user_input = get_doc_from_input(">")
             temp_node = current_node
             if current_node.check_for_solutions():
                 temp_node.pick_solution(user_input)
