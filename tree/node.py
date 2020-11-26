@@ -34,8 +34,8 @@ class Node:
         child.parent = self
         child.level = self.level + 1
 
-    def search_branch(self, data):
-        base_boarder = 0.2
+    def search_branch(self, data, treshold):
+        base_boarder = treshold
         similarity = base_boarder
         best_match = None
         list = self.getChildren()
@@ -47,8 +47,8 @@ class Node:
         print(similarity)
         return best_match
 
-    def search_other_branches(self, data):
-        base_boarder = 0.2
+    def search_other_branches(self, data, treshold):
+        base_boarder = treshold
         similarity = base_boarder
         best_match = None
         current_node = self
