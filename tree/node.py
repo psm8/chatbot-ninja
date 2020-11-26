@@ -1,12 +1,12 @@
 from sentence.spaCyTreeNode import SpaCyTreeNode
 
-
 class Node:
     def __init__(self, data):
         self.data = SpaCyTreeNode(data)
         self.children = []
         self.parent = None
         self.level = 0
+        self.base_boarder = 0.2
 
     def __eq__(self, other):
         if isinstance(other, Node):
@@ -34,9 +34,8 @@ class Node:
         child.parent = self
         child.level = self.level + 1
 
-    def search_branch(self, data, treshold):
-        base_boarder = treshold
-        similarity = base_boarder
+    def search_branch(self, data):
+        similarity = self.base_boarder
         best_match = None
         list = self.getChildren()
         for i in range(0, len(list)):
@@ -47,9 +46,8 @@ class Node:
         print(similarity)
         return best_match
 
-    def search_other_branches(self, data, treshold):
-        base_boarder = treshold
-        similarity = base_boarder
+    def search_other_branches(self, data):
+        similarity = self.base_boarder
         best_match = None
         current_node = self
 
@@ -89,6 +87,18 @@ class Node:
         new_child = Node(new_question)
         self.addChild(new_child)
         new_child.add_solutions(user_solution)
+
+    def check_for_solutions(self, data):
+        if len(self.getData().solutions) > 0:
+            return self.getData().pick_solution(data)
+        return None
+
+    def get_root(self):
+        current_node = self
+        while current_node.getParent():
+            current_node = current_node.getParent()
+        return current_node
+
 
 
 

@@ -1,5 +1,5 @@
 from preprocess import preprocess
-
+from utils.utils import ask_if_it_helped
 
 class SpaCyTreeNode:
 
@@ -18,6 +18,24 @@ class SpaCyTreeNode:
 
   def similarityValue(self, other):
     return self.doc.similarity(preprocess.preprocess(other))
+
+  def pick_solution(self, data):
+    user_problem = preprocess.preprocess(data)
+    def sort_by_similarity(e):
+      return e.similarity(user_problem)
+
+    self.solutions.sort(key=sort_by_similarity)
+    print(str(self.solutions))
+    # best_solution = self.solutions[0]
+    # max_similarity = best_solution.similarity(user_problem)
+    # for solution in self.solutions:
+    #   if max_similarity < solution.similarity(user_problem):
+    #     best_solution = solution
+    #     max_similarity = best_solution.similarity(user_problem)
+    for solution in self.solutions:
+      print(solution.text)
+      if solution > :
+        return solution
 
   def tokenTextAndTags(self):
     return preprocess.tokenize(self.doc)
