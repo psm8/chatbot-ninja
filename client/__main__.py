@@ -37,27 +37,6 @@ def main():
 
     # obiekty = [preprocess.preprocess("witam"), preprocess.preprocess("cie"), preprocess.preprocess("w dupie")]
     # obiekty.sort(key=sort_by_similarity)
-
-<<<<<<< HEAD
-    #init_tree()
-    root = pickle.load(open("temp_save.p", "rb"))
-    current_node = root
-    temp_node = root
-    helped = False
-    while current_node:
-        print(current_node)
-        user_input = input(">")
-        temp_node = current_node
-        if len(current_node.getData().solutions) > 0: # if len == 0 false and > similiarity
-            print(current_node.getData().solutions[0].text)
-            control_question = input("*Was it helpful?** (yes/no) >")
-            if control_question == 'yes':
-                helped = True
-                break
-        current_node = current_node.search_branch(user_input, 0.2)
-        if not current_node:
-            current_node = temp_node.search_other_branches(user_input, 0.2)
-=======
     while True:
         #init_tree()
         root = pickle.load(open("temp_save.p", "rb"))
@@ -74,8 +53,6 @@ def main():
                 current_node = current_node.search_branch(user_input)
                 if not current_node:
                     current_node = temp_node.search_other_branches(user_input)
->>>>>>> main
-
 
         if not helped:
             print("Sorry I can't help you, Can you tell me how to solve it?")
