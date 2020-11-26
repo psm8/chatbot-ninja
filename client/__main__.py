@@ -3,6 +3,7 @@ from tree.node import Node
 from tree.treeMechanics import search_tree
 from sentence.spaCyTreeNode import SpaCyTreeNode
 import pickle
+from utils.utils import ask_if_it_helped
 
 def init_tree():
     root = Node("How can I help You?")
@@ -33,34 +34,33 @@ def init_tree():
 
 def main():
 
+    while True:
+        #init_tree()
+        root = pickle.load(open("temp_save.p", "rb"))
+        current_node = root
+        temp_node=root
+        helped = False
+        while current_node:
+            print(current_node)
+            user_input = input(">")
+            temp_node = current_node
+            if current_node.check_for_solutions():
+                temp_node.pick_solution(user_input)
+                if ask_if_it_helped():
+                    helped = True
+                    break
+            current_node = current_node.search_branch(user_input)
+            if not current_node:
+                current_node = temp_node.search_other_branches(user_input)
 
-    #init_tree()
-    root = pickle.load(open("temp_save.p", "rb"))
-    current_node = root
-    temp_node=root
-    helped = False
-    while current_node:
-        print(current_node)
-        user_input = input(">")
-        temp_node = current_node
-        if len(current_node.getData().solutions) > 0: # if len == 0 false and > similiarity
-            print(current_node.getData().solutions[0].text)
-            control_question = input("*Was it helpful?** (yes/no) >")
-            if control_question == 'yes':
-                helped = True
-                break
-        current_node = current_node.search_branch(user_input)
-        if not current_node:
-            current_node = temp_node.search_other_branches(user_input)
 
-
-    if not helped:
-        print("Sorry I can't help you, Can you tell me how to solve it?")
-        user_solution = input("*your solution** >")
-        temp_node.generate_question(user_solution)
-        pickle.dump(root, open("temp_save.p", "wb"))
-    else:
-        print("You're welcome")
+        if not helped:
+            print("Sorry I can't help you, Can you tell me how to solve it?")
+            user_solution = input("*your solution** >")
+            temp_node.generate_question(user_solution)
+            pickle.dump(root, open("temp_save.p", "wb"))
+        else:
+            print("You're welcome")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Chatbot Ninja")

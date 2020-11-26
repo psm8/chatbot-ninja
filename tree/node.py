@@ -1,5 +1,5 @@
 from sentence.spaCyTreeNode import SpaCyTreeNode
-
+from preprocess import preprocess
 
 class Node:
     def __init__(self, data):
@@ -89,6 +89,21 @@ class Node:
         new_child = Node(new_question)
         self.addChild(new_child)
         new_child.add_solutions(user_solution)
+
+    def pick_solution(self, data):
+        data = preprocess.preprocess(data)
+        best_solution = self.getData().solutions[0]
+        for i in range(0, len(self.getData().solutions)):
+            if best_solution.similarity(data) < self.getData().solutions[i].similarity(data):
+                best_solution = self.getData().solutions[i]
+        print(best_solution.text)
+        return best_solution
+
+    def check_for_solutions(self):
+        if len(self.getData().solutions) > 0:
+            return True
+        return False
+
 
 
 
