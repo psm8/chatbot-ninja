@@ -2,9 +2,12 @@ from utils.utils import ask_if_it_helped, get_doc_from_input
 
 class SpaCyTreeNode:
 
-  def __init__(self, nlp_obj):
+  def __init__(self, nlp_obj, solutions=None):
     self.doc = nlp_obj
-    self.solutions = []
+    if solutions is None:
+      self.solutions = []
+    else:
+      self.solutions = solutions
 
   def __eq__(self, other):
     if isinstance(other, SpaCyTreeNode):
@@ -23,10 +26,6 @@ class SpaCyTreeNode:
       return e.similarity(user_problem)
 
     return self.solutions.sort(key=sort_by_similarity)
-
-  #
-  # def tokenTextAndTags(self):
-  #   return preprocess.tokenize(self.doc)
 
   def add_solution(self, solution):
     self.solutions.append(solution)

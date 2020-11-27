@@ -4,6 +4,7 @@ from tree.treeMechanics import search_tree
 from sentence.spaCyTreeNode import SpaCyTreeNode
 import pickle
 from utils.utils import ask_if_it_helped, get_doc_from_input
+from dataset.json_tools import encode
 
 def init_tree():
     root = Node("How can I help You?")
@@ -30,11 +31,12 @@ def init_tree():
     child3.addChild(child31)
     child4.addChild(child41)
 
+    encode(root, "temp_save.p")
     pickle.dump(root, open("temp_save.p", "wb"))
 
 def main():
 
-    #init_tree()
+    # init_tree()
     root = pickle.load(open("temp_save.p", "rb"))
     current_node = root
     temp_node=root
