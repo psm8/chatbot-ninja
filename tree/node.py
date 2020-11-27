@@ -10,7 +10,7 @@ class Node:
         self.parent = None
         self.children = []
         self.level = 0
-        self.base_boarder = 0.2
+        self.base_boarder = 0.4
         if solutions is not None:
             for solution in solutions:
                 self.data.add_solution(solution)

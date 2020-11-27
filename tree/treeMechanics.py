@@ -1,16 +1,18 @@
 def search_tree(node, data):
     similarity = 0.2
     best_match = None
-    list = node.getChildren()
-    while len(list) > 0:
-        if data.similarityValue(list[0].getData()) > similarity:
-            best_match = list[0]
-        current_node = list[0]
+    children_list = node.getChildren()
+    while len(children_list) > 0:
+        result = children_list[0].getData().similarityValue(data)
+        if result > similarity:
+            best_match = children_list[0]
+            similarity = result
+        current_node = children_list[0]
         current_node_children = current_node.getChildren()
-        list.pop(0)
+        children_list.pop(0)
         if len(current_node_children) > 0:
             for i in range (0, len(current_node_children)):
-                list.insert(0, current_node_children[i])
+                children_list.insert(0, current_node_children[i])
 
     return best_match
 
