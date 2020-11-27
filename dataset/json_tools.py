@@ -1,13 +1,13 @@
 import json
+from json import JSONEncoder
 
 from tree.node import Node
 
 
-def encode() -> Node:
-    with open("dataset/tree_data.json", "r") as f:
-        test = f.read()
-        test_json = json.loads(test)
-        node = Node(test_json["question"], None, get_children(test_json["children"]))
+def decode(address: str) -> Node:
+    with open(address, "r") as f:
+        json_in = json.loads(f.read())
+        node = Node(json_in["question"], None, get_children(json_in["children"]))
     return node
 
 
@@ -19,11 +19,15 @@ def get_children(children:[]) -> [Node]:
     return nodes
 
 
-def decode(node: Node,):
-    with open("dataset/tree_data2.json", "w") as f:
-        test = json.dumps(node)
-        f.write(test)
+def encode(node: Node, address: str):
+    with open(address, "w") as f:
+        json_out = json.dumps(node, cls=DefaultEncoder, indent=2)
+        f.write(json_out)
 
 
-test = encode()
-test2 = decode(test)
+class DefaultEncoder(JSONEncoder):
+    def default(self, o):
+        try:
+            return o.toJSON()
+        except:
+            return o.__dict__

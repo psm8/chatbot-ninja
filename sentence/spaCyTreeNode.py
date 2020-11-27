@@ -6,6 +6,8 @@ class SpaCyTreeNode:
     self.doc = nlp_obj
     if solutions is None:
       self.solutions = []
+    else:
+      self.solutions = solutions
 
   def __eq__(self, other):
     if isinstance(other, SpaCyTreeNode):

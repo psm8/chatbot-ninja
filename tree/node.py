@@ -5,14 +5,18 @@ from utils.utils import ask_if_it_helped
 class Node:
 
     def __init__(self, data, solutions=None, children=None):
-        self.data = SpaCyTreeNode(preprocess.preprocess(data), preprocess.preprocess(solutions))
-        if children is None:
-            self.children = []
-        else:
-            self.children = children
+
+        self.data = SpaCyTreeNode(preprocess.preprocess(data))
         self.parent = None
+        self.children = []
         self.level = 0
         self.base_boarder = 0.2
+        if solutions is not None:
+            for solution in solutions:
+                self.data.add_solution(solution)
+        if children is not None:
+            for child in children:
+                self.addChild(child)
 
     def __eq__(self, other):
         if isinstance(other, Node):
@@ -110,6 +114,16 @@ class Node:
         while current_node.getParent():
             current_node = current_node.getParent()
         return current_node
+
+    def toJSON(self):
+        dict = {
+            "question": self.data.doc.text,
+            "solutions": [x.text for x in self.data.solutions],
+            "children": [x for x in self.children]
+        }
+        return dict
+
+
 
 
 
