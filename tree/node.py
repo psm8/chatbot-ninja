@@ -89,7 +89,7 @@ class Node:
         return best_match
 
     # Do zmiany zeby od razu tu leciał check czy rozwiazanie pasuje
-    def add_solutions(self, solution):
+    def add_solution(self, solution):
         self.data.add_solution(solution)
 
     #TODO zamienic na generacje z modelu

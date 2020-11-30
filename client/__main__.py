@@ -51,10 +51,10 @@ def main():
             if not current_node:
                 current_node = temp_node.search_other_branches(user_input)
                 if not current_node:
-                    # add_solution_to_tree(root)
-                    print("Sorry I can't help you, Can you tell me how to solve it?")
-                    user_solution = get_doc_from_input("*your solution** >")
-                    temp_node.generate_question(user_solution)
+                    add_solution_to_tree(root)
+                    #print("Sorry I can't help you, Can you tell me how to solve it?")
+                    #user_solution = get_doc_from_input("*your solution** >")
+                    #temp_node.generate_question(user_solution)
 
 
 
@@ -87,10 +87,10 @@ def add_solution_to_tree(root:Node):
         index = 1
         while choosen_node is None:
             if index >= len(root_children_sorted):
-                ask_for_question(root, user_solution)
+                choosen_node = ask_for_question(root, user_solution)
                 break
             choosen_node = search_good_node_to_add_solution_to_in_branch(root_children_sorted[index], 0.8, user_solution)
-            index += index
+            index += 1
         choosen_node.add_solution(user_solution)
         print("dodalem solution")
         print(choosen_node)
@@ -131,6 +131,5 @@ def ask_for_question(root: Node, user_solution):
         if child.getChildren() == None:
             addedquestionnode = child
             break
-    addedquestionnode.add_solution(user_solution)
-
+    return addedquestionnode
 main()

@@ -185,7 +185,9 @@
           "children": [
             {
               "question": "Bad compound",
-              "solutions": [],
+              "solutions": [
+                "I just turn off lights"
+              ],
               "children": []
             },
             {
