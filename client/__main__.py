@@ -1,10 +1,8 @@
 import argparse
 from tree.node import Node
 from tree.treeMechanics import search_tree
-from sentence.spaCyTreeNode import SpaCyTreeNode
-import pickle
-from utils.utils import ask_if_it_helped, get_doc_from_input
-from dataset.json_tools import encode, decode
+from utils.utils import get_doc_from_input
+from utils.json_tools import encode, decode
 
 # def init_tree():
 #     root = Node("How can I help You?")
@@ -39,7 +37,7 @@ def main():
     # init_tree()
 
     # root = pickle.load(open("temp_save.p", "rb"))
-    root = decode("../dataset/tree_data.json")
+    root = decode("dataset/tree_data2.json")
     current_node = root
     temp_node=root
     while current_node:
@@ -62,7 +60,7 @@ def main():
 
 
     # pickle.dump(root, open("temp_save.p", "wb"))
-    encode(root, "../dataset/tree_data2.json")
+    encode(root, "dataset/tree_data2.json")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Chatbot Ninja")

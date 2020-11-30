@@ -2,7 +2,7 @@ import json
 from json import JSONEncoder
 
 from tree.node import Node
-
+from preprocess.preprocess import preprocess
 
 def decode(address: str) -> Node:
     with open(address, "r") as f:
@@ -11,10 +11,10 @@ def decode(address: str) -> Node:
     return node
 
 
-def get_children(children:[]) -> [Node]:
+def get_children(children: []) -> [Node]:
     nodes = []
     for child in children:
-        nodes.append(Node(child["question"], child["solutions"], get_children(child["children"])))
+        nodes.append(Node(child["question"], [preprocess(x) for x in child["solutions"]], get_children(child["children"])))
 
     return nodes
 
