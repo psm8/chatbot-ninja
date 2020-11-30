@@ -52,11 +52,6 @@ def main():
                 current_node = temp_node.search_other_branches(user_input)
                 if not current_node:
                     add_solution_to_tree(root)
-                    #print("Sorry I can't help you, Can you tell me how to solve it?")
-                    #user_solution = get_doc_from_input("*your solution** >")
-                    #temp_node.generate_question(user_solution)
-
-
 
 
     # pickle.dump(root, open("temp_save.p", "wb"))
