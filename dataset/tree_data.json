@@ -1,0 +1,271 @@
+{
+  "question": "How can I help You?",
+  "solutions": [],
+  "children": [
+    {
+      "question": "So the problem is cornering. Can you add more details?",
+      "solutions": [],
+      "children": [
+        {
+          "question": "So you are understeering. Does this happen on fast or slow corners?",
+          "solutions": [],
+          "children": [
+            {
+              "question": "Antiroll bar",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Differencial",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Camber",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Springs",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Dampers",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Compound",
+              "solutions": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "question": "So you are Oversteering. Does this happen on fast or slow corners?",
+          "solutions": [],
+          "children": [
+            {
+              "question": "Aero",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Antiroll bar",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Camber",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Springs",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Dampers",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Compound",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Differencial",
+              "solutions": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "question": "So your car struggle onn straights. Can you add more details?",
+      "solutions": [],
+      "children": [
+        {
+          "question": "Top Speed",
+          "solutions": [],
+          "children": [
+            {
+              "question": "Aero",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Engine",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Gearing",
+              "solutions": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "question": "Stability",
+          "solutions": [],
+          "children": [
+            {
+              "question": "Toe",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Bad compound",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Aero",
+              "solutions": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "question": "Acceleration",
+          "solutions": [],
+          "children": [
+            {
+              "question": "Engine",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Gearing",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Turbine boost",
+              "solutions": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "question": "So you got problems on different surface or in rain. Can you add more details?",
+      "solutions": [],
+      "children": [
+        {
+          "question": "Bumps and Curbs",
+          "solutions": [],
+          "children": [
+            {
+              "question": "Dampers",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Antiroll bar",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Springs",
+              "solutions": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "question": "Gravel and rain",
+          "solutions": [],
+          "children": [
+            {
+              "question": "Bad compound",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Differencial",
+              "solutions": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "question": "Drifting",
+          "solutions": [],
+          "children": [
+            {
+              "question": "Camber",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Toe",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Differencial",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Antiroll bar",
+              "solutions": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "question": "You can't get the feel of brakes. Can you add more detail?",
+      "solutions": [],
+      "children": [
+        {
+          "question": "Tyre Lockup",
+          "solutions": [],
+          "children": [
+            {
+              "question": "Brake bias",
+              "solutions": [],
+              "children": []
+            },
+            {
+              "question": "Brake pressure",
+              "solutions": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "question": "Braking too slow",
+          "solutions": [],
+          "children": [
+            {
+              "question": "Brake pressure",
+              "solutions": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "question": "Braking too fast",
+          "solutions": [],
+          "children": [
+            {
+              "question": "Brake pressure",
+              "solutions": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

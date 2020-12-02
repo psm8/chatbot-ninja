@@ -15,6 +15,7 @@ simpletransformers = "*"
 tokenizers = "*"
 kaggle = "*"
 pytorch-pretrained-bert = "*"
+anytree = "*"
 
 [requires]
 python_version = "3.8"
