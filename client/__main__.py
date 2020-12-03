@@ -37,7 +37,7 @@ def main():
     # init_tree()
 
     # root = pickle.load(open("temp_save.p", "rb"))
-    root = decode("dataset/tree_data2.json")
+    root = decode("dataset/operating_data.json")
     current_node = root
     temp_node=root
     while current_node:
@@ -55,7 +55,7 @@ def main():
 
 
     # pickle.dump(root, open("temp_save.p", "wb"))
-    encode(root, "dataset/tree_data2.json")
+    encode(root, "dataset/operating_data.json")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Chatbot Ninja")
