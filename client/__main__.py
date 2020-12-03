@@ -115,10 +115,12 @@ def nodes_and_similarity_value_lists_to_dictionary(test_keys, test_values):
     return {test_keys[i]: test_values[i] for i in range(len(test_keys))}
 
 
-def ask_for_question(root: Node, user_solution):
+def ask_for_question(root: Node):
     print("Sorry I can't find a question suited to add your solution, Can you tell me how should I ask for this problem?")
     user_question = get_doc_from_input("*your solution** >")
     choosen_node = search_tree(root, user_question)
+    if(choosen_node is None):
+        choosen_node = root
     choosen_node.addChild(user_question)
     children = choosen_node.getChildren()
     addedquestionnode = None
