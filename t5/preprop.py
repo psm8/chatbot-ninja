@@ -25,7 +25,7 @@ def getDF(path):
 def choose_right_questions(path):
     data = {'target_text':[], 'input_text':[], 'prefix':[]}
     for file in os.listdir(path):
-        if fnmatch.fnmatch(file, 'dialogueText*.csv'):
+        if fnmatch.fnmatch(file, 'dialogueText.csv'):
             print(file)
             df = pd.read_csv(path + "/" +file)
             df2 = df.drop(columns=['folder', 'date'])
@@ -39,7 +39,7 @@ def choose_right_questions(path):
     result_df = pd.DataFrame.from_dict(data)
     result_df.to_csv(f"data/ninja_data_all.tsv", "\t")
 
-    train_df, eval_df = train_test_split(df, test_size=0.05)
+    train_df, eval_df = train_test_split(result_df, test_size=0.05)
 
     train_df.to_csv("data/ninja_train_df.tsv", "\t")
     eval_df.to_csv("data/ninja_eval_df.tsv", "\t")
