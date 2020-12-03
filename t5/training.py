@@ -12,7 +12,7 @@ def training():
         "reprocess_input_data": True,
         "overwrite_output_dir": True,
         "max_seq_length": 128,
-        "train_batch_size": 1,
+        "train_batch_size": 8,
         "num_train_epochs": 1,
         "save_eval_checkpoints": True,
         "save_steps": -1,
@@ -26,9 +26,9 @@ def training():
         "wandb_project": "Question Generation with T5",
     }
 
-    model = T5Model("t5-base", args=model_args, use_cuda=False)
+    model = T5Model("t5-base", args=model_args, use_cuda=True)
 
-    model.train_model(train_df, eval_data=eval_df, use_cuda=False)
+    model.train_model(train_df, eval_data=eval_df, use_cuda=True)
 
 
 if __name__ == '__main__':

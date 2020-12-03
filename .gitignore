@@ -129,3 +129,4 @@ dmypy.json
 *.gz
 cache_dir/
 outputs/
+data-ubuntu/
