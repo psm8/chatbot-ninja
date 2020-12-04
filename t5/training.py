@@ -5,8 +5,8 @@ from simpletransformers.t5 import T5Model
 
 def training():
 
-    train_df = pd.read_csv("data/train_df.tsv", sep="\t").astype(str)
-    eval_df = pd.read_csv("data/eval_df.tsv", sep="\t").astype(str)
+    train_df = pd.read_csv("data/ninja_train_df.tsv", sep="\t").astype(str)
+    eval_df = pd.read_csv("data/ninja_eval_df.tsv", sep="\t").astype(str)
 
     model_args = {
         "reprocess_input_data": True,
