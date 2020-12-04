@@ -21,9 +21,9 @@ def training():
         "evaluate_during_training_steps": 15000,
         "evaluate_during_training_verbose": True,
         "fp16": False,
-
-
-        "wandb_project": "Question Generation with T5",
+        #
+        #
+        # "wandb_project": "Question Generation with T5",
     }
 
     model = T5Model("t5-base", args=model_args, use_cuda=True)
