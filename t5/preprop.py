@@ -3,7 +3,7 @@ import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-RIGHT_QUESTIONS = ["did you tr", "have you tr", "did you ", "did you considered ", "could you ", "can you ", "you might "]
+RIGHT_QUESTIONS = ["did you tr", "have you tr", "did you considered ", "could you ", "can you ", "you might "]
 
 
 def parse(file):
@@ -25,7 +25,7 @@ def getDF(path):
 def choose_right_questions(path):
     data = {'target_text':[], 'input_text':[], 'prefix':[]}
     for file in os.listdir(path):
-        if fnmatch.fnmatch(file, 'dialogueText.csv'):
+        if fnmatch.fnmatch(file, 'dialogueText*.csv'):
             print(file)
             df = pd.read_csv(path + "/" +file)
             df2 = df.drop(columns=['folder', 'date'])
@@ -57,12 +57,15 @@ def append_result(data, group, id1):
     local_text = ''
     for id2, text2 in group.iterrows():
         if id2 < id1:
-            if isinstance(text2, str):
+            if isinstance(text2['text'], str):
                 local_text += (text2['text'] + " ")
+        else:
+            break
 
-    data['target_text'].append(text2['text'])
-    data['input_text'].append(local_text)
-    data['prefix'].append('CHAT')
+    if local_text != "":
+        data['target_text'].append(text2['text'])
+        data['input_text'].append(local_text)
+        data['prefix'].append('CHAT')
 
 
 choose_right_questions('data-ubuntu/Ubuntu-dialogue-corpus')
