@@ -7,78 +7,38 @@
       "solutions": [],
       "children": [
         {
-          "question": "So you are understeering. Does this happen on fast or slow corners?",
-          "solutions": [],
+          "question": "So you are understeering. Does this happen on slow or fast corners?",
+          "solutions": ["Try softening your front springs", "Soften your fron Anti-Roll Bar"],
           "children": [
             {
-              "question": "Antiroll bar",
-              "solutions": [],
+              "question": "Okay, in slow corners right, What about stability, can we sacrifice it for more grip in slow corners?",
+              "solutions": ["Raise front aerodynamics - front wing"],
               "children": []
             },
             {
-              "question": "Differencial",
-              "solutions": [],
+              "question": "Okay, so can't go at fast speed through corner, we can easy fix it but you will be slower on straights, are you ok with this?",
+              "solutions": ["Add more negative camber to your front tyres"],
               "children": []
             },
             {
-              "question": "Camber",
-              "solutions": [],
-              "children": []
-            },
-            {
-              "question": "Springs",
-              "solutions": [],
-              "children": []
-            },
-            {
-              "question": "Dampers",
-              "solutions": [],
-              "children": []
-            },
-            {
-              "question": "Compound",
+              "question": "Well maybe you can specify: Do you understeer while enterning or exiting corner?",
               "solutions": [],
               "children": []
             }
-          ]
+            ]
         },
         {
           "question": "So you are Oversteering. Does this happen on fast or slow corners?",
-          "solutions": [],
+          "solutions": ["Try softening your rear springs", "Soften your rear Anti-Roll Bar"],
           "children": [
             {
-              "question": "Aero",
-              "solutions": [],
+              "question": "Ok, so the problem is on slower corners. Are you willing to lower ride height or this can cause a problem?",
+              "solutions": ["Lower rear ride height", "Soften rear Anti-roll Bar"],
               "children": []
             },
             {
-              "question": "Antiroll bar",
-              "solutions": [],
-              "children": []
-            },
-            {
-              "question": "Camber",
-              "solutions": [],
-              "children": []
-            },
-            {
-              "question": "Springs",
-              "solutions": [],
-              "children": []
-            },
-            {
-              "question": "Dampers",
-              "solutions": [],
-              "children": []
-            },
-            {
-              "question": "Compound",
-              "solutions": [],
-              "children": []
-            },
-            {
-              "question": "Differencial",
-              "solutions": [],
+              "question": "Ok, fast corners cause oversteer. Can we lose some top speed to fix that?",
+              "solutions": ["Raise rear aerodynamics - rear wing", "Add more negative camber on the rear"],
               "children": []
             }
           ]
@@ -90,64 +50,44 @@
       "solutions": [],
       "children": [
         {
-          "question": "Top Speed",
+          "question": "Not reaching top speed? Tell me about your grip in corners?",
           "solutions": [],
           "children": [
             {
-              "question": "Aero",
-              "solutions": [],
+              "question": "So we can lose some traction to get speed, you prefer more under or oversteer",
+              "solutions": ["Lower your aerodynamic on rear","Lower your aerodynamic on front"],
               "children": []
             },
             {
-              "question": "Engine",
-              "solutions": [],
+              "question": "We can lower your ride height, Does your car hits road during braking?",
+              "solutions": ["Lower ride height in rear", "lower ride height in front and rear"],
               "children": []
             },
             {
-              "question": "Gearing",
-              "solutions": [],
+              "question": "To maintain current level of grip and gain top speed we can modify gearing, are you willing to lose some acceleration to gain speed?",
+              "solutions": ["You can lower final gear ratio, and on least gears, avoid lowering on 1st and 2nd"],
               "children": []
             }
           ]
         },
         {
-          "question": "Stability",
+          "question": "Your car isn't stable, What about other situations? Is it stable during braking, acceleration or cornering?",
           "solutions": [],
           "children": [
             {
-              "question": "Toe",
-              "solutions": [],
-              "children": []
-            },
-            {
-              "question": "Bad compound",
-              "solutions": [],
-              "children": []
-            },
-            {
-              "question": "Aero",
-              "solutions": [],
+              "question": "Problem with braking? You prefer more over or understeer?",
+              "solutions": ["Raise bump on the front", "Turn brake bias more on the front"],
               "children": []
             }
           ]
         },
         {
-          "question": "Acceleration",
-          "solutions": [],
+          "question": "Problem with acceleration? What about your top speed can we sacrifice it?",
+          "solutions": ["You can raise gear ratios on 1st, 2nd and 3rd gears"],
           "children": [
             {
-              "question": "Engine",
-              "solutions": [],
-              "children": []
-            },
-            {
-              "question": "Gearing",
-              "solutions": [],
-              "children": []
-            },
-            {
-              "question": "Turbine boost",
-              "solutions": [],
+              "question": "You need also top speed, okay, Does your car have turbo?",
+              "solutions": ["Raise your turbine boost"],
               "children": []
             }
           ]
@@ -159,8 +99,8 @@
       "solutions": [],
       "children": [
         {
-          "question": "Bumps and Curbs",
-          "solutions": [],
+          "question": "So you are racing on track but car can't handle bumps and curbs, what about cornering, does it also struggle?",
+          "solutions": ["Try raising your ride height"],
           "children": [
             {
               "question": "Dampers",
@@ -180,17 +120,17 @@
           ]
         },
         {
-          "question": "Gravel and rain",
+          "question": "So you are racing on bad surface, is it problem with rain or you are in the offroad car?",
           "solutions": [],
           "children": [
             {
-              "question": "Bad compound",
-              "solutions": [],
+              "question": "To increase grip in rain we can change compound, but the car will be slower when track drys is it ok?",
+              "solutions": ["Change tyre compound for wet or intermediate"],
               "children": []
             },
             {
-              "question": "Differencial",
-              "solutions": [],
+              "question": "Offroad corners right?, You prefer to take corners smoothly or aggressively?",
+              "solutions": ["Loosen springs in your car", "Stiffer the differencial and Anti-roll bars"],
               "children": []
             }
           ]
@@ -228,39 +168,12 @@
       "solutions": [],
       "children": [
         {
-          "question": "Tyre Lockup",
-          "solutions": [],
+          "question": "Seems you are locking your tyres, Do you lose your rear during braking or just lock front tyres and can't turn",
+          "solutions": ["Transfer brake bias to front tyres", "Transfer brake bias to the rear"],
           "children": [
             {
-              "question": "Brake bias",
-              "solutions": [],
-              "children": []
-            },
-            {
-              "question": "Brake pressure",
-              "solutions": [],
-              "children": []
-            }
-          ]
-        },
-        {
-          "question": "Braking too slow",
-          "solutions": [],
-          "children": [
-            {
-              "question": "Brake pressure",
-              "solutions": [],
-              "children": []
-            }
-          ]
-        },
-        {
-          "question": "Braking too fast",
-          "solutions": [],
-          "children": [
-            {
-              "question": "Brake pressure",
-              "solutions": [],
+              "question": "Brake bias is good but still something not working? Maybe we can lower brake pressure, or you still need fast braking?",
+              "solutions": ["Lower brake pressure"],
               "children": []
             }
           ]
