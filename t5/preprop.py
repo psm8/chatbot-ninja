@@ -1,7 +1,10 @@
 import fnmatch
 import os
 import pandas as pd
+import numpy as np
 from sklearn.model_selection import train_test_split
+from multiprocessing import Process, Queue
+
 
 RIGHT_QUESTIONS = ["did you tr", "have you tr", "did you considered ", "could you ", "can you ", "you might "]
 
@@ -56,11 +59,12 @@ def is_right_question(text):
 def append_result(data, group, id1):
     local_text = ''
     for id2, text2 in group.iterrows():
-        if id2 < id1:
-            if isinstance(text2['text'], str):
-                local_text += (text2['text'] + " ")
-        else:
-            break
+        if id1 - 5 <= id2:
+            if id2 < id1:
+                if isinstance(text2['text'], str):
+                    local_text += (text2['text'] + " ")
+            else:
+                break
 
     if local_text != "":
         data['target_text'].append(text2['text'])
