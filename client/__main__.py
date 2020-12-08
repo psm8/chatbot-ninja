@@ -8,7 +8,7 @@ from utils.json_tools import encode, decode
 #     root = Node("How can I help You?")
 #
 #     child1 = Node("So the problem is cornering. Can you add more details?")
-#     child2 = Node("So your car struggle onn straights. Can you add more details?")
+#     child2 = Node("So your car struggle on straights. Can you add more details?")
 #     child3 = Node("So you got problems on different surface or in rain. Can you add more details?")
 #     child4 = Node("You can't get the feel of brakes. Can you add more detail?")
 #

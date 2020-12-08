@@ -1,11 +1,13 @@
 from utils.utils import ask_if_it_helped, get_doc_from_input
+from preprocess import preprocess
 
 class SpaCyTreeNode:
 
-  def __init__(self, nlp_obj, solutions=None):
+  def __init__(self, nlp_obj, typical_answer, solutions=None):
     self.doc = nlp_obj
+    self.typical_answer = typical_answer
     if solutions is None:
-      self.solutions = []
+      self.solutions = {}
     else:
       self.solutions = solutions
 
@@ -18,17 +20,21 @@ class SpaCyTreeNode:
     return self.doc.text
 
   def similarityValue(self, other):
-    return self.doc.similarity(other)
+    return self.typical_answer.similarity(other)
 
   def pick_solution(self, data):
     user_problem = data
+    key_list = []
+    for key in self.solutions:
+      key_list.append(preprocess.preprocess(key))
+
     def sort_by_similarity(e):
       return e.similarity(user_problem)
 
-    return self.solutions.sort(key=sort_by_similarity)
+    return key_list.sort(key=sort_by_similarity)
 
-  def add_solution(self, solution):
-    self.solutions.append(solution)
+  def add_solution(self, solution, answer):
+    self.solutions[answer] = solution
 
   #TODO zrobic generacje z modelu
   def generate_question(self, user_solution):

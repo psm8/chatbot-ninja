@@ -4,16 +4,16 @@ from utils.utils import ask_if_it_helped
 
 class Node:
 
-    def __init__(self, data, solutions=None, children=None):
+    def __init__(self, data, answer, solutions=None, children=None):
 
-        self.data = SpaCyTreeNode(preprocess.preprocess(data))
+        self.data = SpaCyTreeNode(preprocess.preprocess(data), preprocess.preprocess(answer))
         self.parent = None
         self.children = []
         self.level = 0
         self.base_boarder = 0.4
         if solutions is not None:
-            for solution in solutions:
-                self.data.add_solution(solution)
+            for key in solutions:
+                self.data.add_solution(solutions[key], key)
         if children is not None:
             for child in children:
                 self.addChild(child)
@@ -89,11 +89,11 @@ class Node:
         return best_match
 
     # Do zmiany zeby od razu tu leciał check czy rozwiazanie pasuje
-    def add_solution(self, solution):
-        self.data.add_solution(solution)
+    def add_solution(self, solution, key):
+        self.data.add_solution(solution, key)
 
     #TODO zamienic na generacje z modelu
-    def generate_question(self, user_solution):
+    def generate_question(self, user_solution, user_answer):
         new_question = self.data.generate_question(user_solution)
         new_child = Node(new_question.text)
         self.addChild(new_child)
@@ -106,7 +106,7 @@ class Node:
         for solution in solutions:
             if data.similarity(solution) > self.base_boarder:
                 if ask_if_it_helped(solution):
-                    return solution
+                    return self.getData().solutions[solution.text]
         return None
 
     def get_root(self):
