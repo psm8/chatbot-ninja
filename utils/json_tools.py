@@ -7,14 +7,16 @@ from preprocess.preprocess import preprocess
 def decode(address: str) -> Node:
     with open(address, "r") as f:
         json_in = json.loads(f.read())
-        node = Node(json_in["question"], None, get_children(json_in["children"]))
+        node = Node(json_in["question"], json_in["typical_answer"], None, get_children(json_in["children"]))
     return node
 
 
 def get_children(children: []) -> [Node]:
     nodes = []
     for child in children:
-        nodes.append(Node(child["question"], [preprocess(x) for x in child["solutions"]], get_children(child["children"])))
+        nodes.append(Node(child["question"], child["typical_answer"],
+                          [[preprocess(x[0]), preprocess(x[1])] for x in child["solutions"]],
+                          get_children(child["children"])))
 
     return nodes
 

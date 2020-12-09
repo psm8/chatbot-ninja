@@ -31,7 +31,7 @@ class SpaCyTreeNode:
     return self.solutions.sort(key=sort_by_similarity)
 
   def add_solution(self, solution, answer):
-    self.solutions.append([answer, solution])
+    self.solutions[answer] = solution
 
   #TODO zrobic generacje z modelu
   def generate_question(self, user_solution):
