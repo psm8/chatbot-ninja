@@ -24,17 +24,14 @@ class SpaCyTreeNode:
 
   def pick_solution(self, data):
     user_problem = data
-    key_list = []
-    for key in self.solutions:
-      key_list.append(preprocess.preprocess(key))
 
     def sort_by_similarity(e):
-      return e.similarity(user_problem)
+      return e[0].similarity(user_problem)
 
-    return key_list.sort(key=sort_by_similarity)
+    return self.solutions.sort(key=sort_by_similarity)
 
   def add_solution(self, solution, answer):
-    self.solutions[answer] = solution
+    self.solutions.append([answer, solution])
 
   #TODO zrobic generacje z modelu
   def generate_question(self, user_solution):

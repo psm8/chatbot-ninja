@@ -12,8 +12,8 @@ class Node:
         self.level = 0
         self.base_boarder = 0.4
         if solutions is not None:
-            for key in solutions:
-                self.data.add_solution(solutions[key], key)
+            for solution in solutions:
+                self.data.add_solution(solution[0], solution[1])
         if children is not None:
             for child in children:
                 self.addChild(child)
@@ -106,7 +106,7 @@ class Node:
         for solution in solutions:
             if data.similarity(solution) > self.base_boarder:
                 if ask_if_it_helped(solution):
-                    return self.getData().solutions[solution.text]
+                    return solution[1].text
         return None
 
     def get_root(self):
