@@ -90,14 +90,14 @@ class Node:
         return best_match
 
     # Do zmiany zeby od razu tu leciał check czy rozwiazanie pasuje
-    def add_solution(self, solution, answer):
-        self.data.add_solution(solution, answer)
+    def add_solution(self, answer, solution):
+        self.data.add_solution(answer, solution)
 
     #TODO zamienic na generacje z modelu
-    def generate_question(self, user_solution, user_answer, new_question, typical_answer):
+    def generate_question(self, user_answer, user_solution, new_question, typical_answer):
         new_child = Node(new_question.text, typical_answer.text)
         self.addChild(new_child)
-        new_child.add_solution(user_solution, user_answer)
+        new_child.add_solution(user_answer, user_solution)
 
     def check_for_solutions(self, data):
         solutions = self.getData().pick_solution(data)
@@ -118,7 +118,8 @@ class Node:
     def toJSON(self):
         dict = {
             "question": self.data.doc.text,
-            "solutions": [x.text for x in self.data.solutions],
+            "typical_answer": self.data.typical_answer.text,
+            "solutions": [[x[0].text, x[1].text] for x in self.data.solutions],
             "children": [x for x in self.children]
         }
         return dict
@@ -142,11 +143,11 @@ class Node:
                                                                          user_question)
             index += 1
         if self == choosen_node:
-            choosen_node.generate_question(user_solution, user_answer, user_question, answer_for_last_question)
+            choosen_node.generate_question(user_answer, user_solution, user_question, answer_for_last_question)
         else:
             print(choosen_node)
             answer_for_last_question = get_doc_from_input("*Please enter your answer for the question** >")
-            choosen_node.generate_question(user_solution, user_answer, user_question, answer_for_last_question)
+            choosen_node.generate_question(user_answer, user_solution, user_question, answer_for_last_question)
         print("dodalem solution")
         print(choosen_node)
 

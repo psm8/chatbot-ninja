@@ -7,7 +7,7 @@ class SpaCyTreeNode:
     self.doc = nlp_obj
     self.typical_answer = typical_answer
     if solutions is None:
-      self.solutions = {}
+      self.solutions = []
     else:
       self.solutions = solutions
 
@@ -33,8 +33,8 @@ class SpaCyTreeNode:
 
     return self.solutions.sort(key=sort_by_similarity)
 
-  def add_solution(self, solution, answer):
-    self.solutions[answer] = solution
+  def add_solution(self, answer, solution):
+    self.solutions.append([answer, solution])
 
   #TODO zrobic generacje z modelu
   def generate_question(self, user_solution):
