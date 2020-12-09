@@ -4,39 +4,9 @@ from tree.treeMechanics import search_tree
 from utils.utils import get_doc_from_input
 from utils.json_tools import encode, decode
 
-# def init_tree():
-#     root = Node("How can I help You?")
-#
-#     child1 = Node("So the problem is cornering. Can you add more details?")
-#     child2 = Node("So your car struggle on straights. Can you add more details?")
-#     child3 = Node("So you got problems on different surface or in rain. Can you add more details?")
-#     child4 = Node("You can't get the feel of brakes. Can you add more detail?")
-#
-#     root.addChild(child1)
-#     root.addChild(child2)
-#     root.addChild(child3)
-#     root.addChild(child4)
-#
-#     child11 = Node("So you are understeering. Does this happen on fast or slow corners?")
-#     child12 = Node("Oversteer")
-#     child21 = Node("Top Speed")
-#     child31 = Node("Bumps and curbs")
-#     child41 = Node("Tyre Lockup")
-#
-#     child1.addChild(child11)
-#     child1.addChild(child12)
-#     child2.addChild(child21)
-#     child3.addChild(child31)
-#     child4.addChild(child41)
-#
-#     encode(root, "temp_save.p")
-#     pickle.dump(root, open("temp_save.p", "wb"))
 
 def main():
 
-    # init_tree()
-
-    # root = pickle.load(open("temp_save.p", "rb"))
     root = decode("dataset/operating_data.json")
     current_node = root
     temp_node=root
@@ -54,7 +24,6 @@ def main():
                     add_solution_to_tree(root)
 
 
-    # pickle.dump(root, open("temp_save.p", "wb"))
     encode(root, "dataset/operating_data.json")
 
 if __name__ == "__main__":

@@ -89,15 +89,15 @@ class Node:
         return best_match
 
     # Do zmiany zeby od razu tu leciał check czy rozwiazanie pasuje
-    def add_solution(self, solution, key):
-        self.data.add_solution(solution, key)
+    def add_solution(self, solution, answer):
+        self.data.add_solution(solution, answer)
 
     #TODO zamienic na generacje z modelu
     def generate_question(self, user_solution, user_answer):
         new_question = self.data.generate_question(user_solution)
-        new_child = Node(new_question.text)
+        new_child = Node(new_question.text, user_answer)
         self.addChild(new_child)
-        new_child.add_solutions(user_solution)
+        new_child.add_solution(user_solution, user_answer)
 
     def check_for_solutions(self, data):
         solutions = self.getData().pick_solution(data)
