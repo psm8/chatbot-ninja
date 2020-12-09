@@ -1,5 +1,6 @@
 {
   "question": "How can I help You?",
+  "typical_answer": "",
   "solutions": [],
   "children": [
     {
@@ -167,25 +168,25 @@
           "children": [
             {
               "question": "Camber",
-              "typical_answer": "no idea",
+              "typical_answer": "",
               "solutions": [],
               "children": []
             },
             {
               "question": "Toe",
-              "typical_answer": "no idea",
+              "typical_answer": "",
               "solutions": [],
               "children": []
             },
             {
               "question": "Differencial",
-              "typical_answer": "no idea",
+              "typical_answer": "",
               "solutions": [],
               "children": []
             },
             {
               "question": "Antiroll bar",
-              "typical_answer": "no idea",
+              "typical_answer": "",
               "solutions": [],
               "children": []
             }
