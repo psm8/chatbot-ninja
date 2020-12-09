@@ -130,14 +130,13 @@ class Node:
         user_question = get_doc_from_input(
             "*Please enter your question which you would like to hear from me for this problem** >")
         user_answer = get_doc_from_input("*Please enter your answer for your question** >")
-
         root_children_sorted = self.get_root().get_all_root_children_listed_by_similarity(user_question)
-        choosen_node = root_children_sorted[0].search_good_node_to_add_solution_to_in_branch(0.8, user_question)
 
-        index = 1
+        choosen_node = None
+        index = 0
         while choosen_node is None:
             if index >= len(root_children_sorted):
-                choosen_node = self
+                choosen_node = self.get_root()
                 break
             choosen_node = root_children_sorted[index].search_good_node_to_add_solution_to_in_branch(0.8,
                                                                          user_question)
@@ -168,14 +167,14 @@ class Node:
 
     # function which returns best node match to gotten solution or null if in branch there is none matching treshold
     def search_good_node_to_add_solution_to_in_branch(self, treshold: float, user_question):
-        return self.search_tree(self, treshold, user_question)
+        return self.search_tree(treshold, user_question)
 
-    def nodes_and_similarity_value_lists_to_dictionary(test_keys, test_values):
+    def nodes_and_similarity_value_lists_to_dictionary(self, test_keys, test_values):
         return {test_keys[i]: test_values[i] for i in range(len(test_keys))}
 
-    def search_tree(node, similarity, data):
+    def search_tree(self, similarity, data):
         best_match = None
-        children_list = node.getChildren()
+        children_list = self.getChildren()
         while len(children_list) > 0:
             result = children_list[0].getData().similarityValue(data)
             if result > similarity:
