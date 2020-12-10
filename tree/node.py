@@ -104,9 +104,9 @@ class Node:
         if solutions is None:
             return None
         for solution in solutions:
-            if data.similarity(solution) > self.base_boarder:
-                if ask_if_it_helped(solution):
-                    return solution[1].text
+            if data.similarity(solution[0]) > self.base_boarder:
+                if ask_if_it_helped(solution[1]):
+                    return solution
         return None
 
     def get_root(self):

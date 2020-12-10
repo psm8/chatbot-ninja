@@ -1,5 +1,6 @@
 from utils.utils import ask_if_it_helped, get_doc_from_input
 from preprocess import preprocess
+from copy import copy
 
 class SpaCyTreeNode:
 
@@ -31,7 +32,10 @@ class SpaCyTreeNode:
     def sort_by_similarity(e):
       return e[0].similarity(user_problem)
 
-    return self.solutions.sort(key=sort_by_similarity)
+    local_solutions = copy(self.solutions)
+    local_solutions.sort(key=sort_by_similarity, reverse=True)
+
+    return local_solutions
 
   def add_solution(self, answer, solution):
     self.solutions.append([answer, solution])
