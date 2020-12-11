@@ -8,7 +8,7 @@ Manual:
 2. Execute in projects directory `pipenv --three` to create a virtual environment
 3. Execute `pipenv install` to install dependencies into virtual environment
 4. Make sure you are using right python version
-5. Run python -m spacy download en_core_web_sm
+5. Run python -m spacy download en_core_web_lg
 
 Requirements:
 - python 3.8.1
