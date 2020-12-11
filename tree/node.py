@@ -83,8 +83,6 @@ class Node:
         return temp_node, best_match, nth_best_parent, user_input
 
 
-
-
     def search_other_branches(self, data):
         similarity = self.base_boarder_full_search
         best_match = None
@@ -186,7 +184,7 @@ class Node:
         list = root.getChildren()
         listOfSimilarityValue = []
         for i in range(0, len(list)):
-            result = list[i].get_data().similarityValueByQuestion(user_question)
+            result = list[i].get_data().similarity_value_by_question(user_question)
             listOfSimilarityValue.append(result)
         dictionary = self.nodes_and_similarity_value_lists_to_dictionary(listOfSimilarityValue, list)
         sort_orders = sorted(dictionary.items(), key=lambda x: x[0])
@@ -207,7 +205,7 @@ class Node:
         best_match = None
         children_list = self.getChildren()
         while len(children_list) > 0:
-            result = children_list[0].get_data().similarityValue(data)
+            result = children_list[0].get_data().similarity_value_by_question(data)
             if result > similarity:
                 best_match = children_list[0]
                 similarity = result

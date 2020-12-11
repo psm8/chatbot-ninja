@@ -205,7 +205,7 @@
           "solutions": [["lose rear", "Transfer brake bias to front tyres"], ["lock front tyres", "Transfer brake bias to the rear"]],
           "children": [
             {
-              "question": "Brake bias is good but still something not working? Maybe we can lower brake pressure, or you still need fast braking?",
+              "question": "Maybe we can lower brake pressure, or you still need fast braking?",
               "typical_answer": "I don't know, I just lose grip",
               "solutions": [["We can lower pressure","Lower brake pressure"]],
               "children": []

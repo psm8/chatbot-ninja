@@ -23,7 +23,7 @@ class SpaCyTreeNode:
   def similarityValue(self, other):
     return self.typical_answer.similarity(other)
 
-  def similarityValueByQuestion(self, other):
+  def similarity_value_by_question(self, other):
     return self.doc.similarity(other)
 
   def pick_solution(self, data):
