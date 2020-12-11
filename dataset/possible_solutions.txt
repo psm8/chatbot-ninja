@@ -1,0 +1,32 @@
+https://www.racedepartment.com/threads/assetto-corsa-car-setup-guides.99049/
+
+3.1 Important
+    Suitable gear ratios (track dependant)
+    Braking stability
+    Turn-in willingness
+    Prevention of sudden change from under- to oversteer mid-corner and vice versa
+    High-speed corner balance
+    Prevention of snap-oversteer on turn-in
+    Prevention of lift-off-oversteer
+    Reliability of steering precision and agility
+    Traction on corner exit
+    Stability and agility through chicanes
+    Weight transfer stability though S-corners and chicanes
+    Stability during slides
+    Evenly distributed tyre degredation (e.g. over a race distance)
+
+3.2 Optional
+    Top speed
+    Lateral grip mid corner
+    Prevention of oscillation of suspension/dampers after bump
+    Optimal tyre temperatures
+    Optimal braking distance
+    Bottom-out of car
+
+Antiroll bar
+ride height
+Differencial
+Camber
+Springs
+Dampers
+Compound
