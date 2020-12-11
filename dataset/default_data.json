@@ -143,7 +143,7 @@
           ]
         },
         {
-          "question": "So you are racing on bad surface, is it problem with rain or you are in the offroad car?",
+          "question": "Is it problem with rain or you are in the offroad car?",
           "typical_answer": "No traction in bad conditions",
           "solutions": [],
           "children": [
@@ -200,7 +200,7 @@
       "solutions": [],
       "children": [
         {
-          "question": "Seems you are locking your tyres, Do you lose your rear during braking or just lock front tyres and can't turn",
+          "question": "Do you lose your rear during braking or just lock front tyres and can't turn",
           "typical_answer": "I'm locking my tyres while braking",
           "solutions": [["lose rear", "Transfer brake bias to front tyres"], ["lock front tyres", "Transfer brake bias to the rear"]],
           "children": [

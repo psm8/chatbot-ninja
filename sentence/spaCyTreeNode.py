@@ -1,5 +1,4 @@
-from utils.utils import ask_if_it_helped, get_doc_from_input
-from preprocess import preprocess
+from utils.utils import get_doc_from_input
 from copy import copy
 
 class SpaCyTreeNode:

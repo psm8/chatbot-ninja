@@ -6,7 +6,7 @@ def ask_if_it_helped(solution):
     yes = preprocess.preprocess("yes")
     no = preprocess.preprocess("no")
 
-    answer = preprocess.preprocess(input("Was it helpfull"))
+    answer = preprocess.preprocess(input("Was it helpfull? "))
 
     if yes.similarity(answer) - no.similarity(answer) > 0:
         print("You're welcome")

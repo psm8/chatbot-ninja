@@ -101,21 +101,15 @@ class Node:
             current_node = children_list[0]
             current_node_children = current_node.getChildren()
 
-            # for i in list:
-            #     print(i)
-
             children_list.pop(0)
             if len(current_node_children) > 0:
                 for i in range(0, len(current_node_children)):
                     children_list.append(current_node_children[i])
             if len(children_list) == 0:
                 break
-        #     print("\n*** one iter of while ***\n")
-        # print("\n*** one method called ***\n")
         print(similarity)
         return best_match
 
-    # Do zmiany zeby od razu tu leciał check czy rozwiazanie pasuje
     def add_solution(self, answer, solution):
         self.data.add_solution(answer, solution)
 
@@ -157,7 +151,7 @@ class Node:
         user_question = get_doc_from_input(
             "*Please enter your question which you would like to hear from me for this problem** >")
         user_answer = get_doc_from_input("*Please answer this question** >")
-        root_children_sorted = self.get_root().get_all_root_children_listed_by_similarity(user_question)
+        root_children_sorted = self.get_all_root_children_listed_by_similarity(user_question)
 
         choosen_node = None
         index = 0

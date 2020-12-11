@@ -1,5 +1,4 @@
 import argparse
-from tree.node import Node
 from utils.utils import get_doc_from_input
 from utils.json_tools import encode, decode
 
@@ -30,11 +29,6 @@ def main():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Chatbot Ninja")
-    # parser.add_argument("example1")
-    # options = parser.parse_args()
-    #
-    # example1 = options.example1
-    # main(example1=example1)
 
 
 main()
