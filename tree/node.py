@@ -1,7 +1,7 @@
 from sentence.spaCyTreeNode import SpaCyTreeNode
 from preprocess import preprocess
 from utils.utils import ask_if_it_helped
-from utils.utils import get_doc_from_input
+from utils.utils import get_doc_from_input, similarity_with_wrong_answer
 
 class Node:
 
@@ -11,7 +11,9 @@ class Node:
         self.parent = None
         self.children = []
         self.level = 0
-        self.base_boarder = 0.4
+        self.base_boarder = 0.75
+        self.base_boarder_full_search = 0.91
+
         if solutions is not None:
             for solution in solutions:
                 self.data.add_solution(solution[0], solution[1])
@@ -27,10 +29,9 @@ class Node:
     def __str__(self):
         return str(self.data)
 
-    def getData(self):
+    def get_data(self):
         return self.data
 
-    # jak to dziala skoro to jest kopia xd przypisanie best_match powinno nie dzialac
     def getChildren(self):
         return self.children.copy()
 
@@ -45,20 +46,47 @@ class Node:
         child.parent = self
         child.level = self.level + 1
 
-    def search_branch(self, data):
-        similarity = self.base_boarder
+    def search_branch(self, temp_node, user_input, old_user_input, nth_best_parent, nth_best=0, can_go_recurrent=True):
         best_match = None
+        result = None
         children_list = self.getChildren()
-        for child in children_list:
-            result = child.getData().similarityValue(data)
-            if result > similarity:
-                best_match = child
-                similarity = result
-        print(similarity)
-        return best_match
+
+        results = [[child, child.get_data().similarityValue(user_input)] for child in children_list]
+
+        results.sort(key=lambda x: x[1], reverse=True)
+
+        if results and results[nth_best][1] > self.base_boarder:
+            result = results[nth_best][1]
+            best_match = results[nth_best][0]
+
+        if can_go_recurrent:
+            if self.parent and len(self.parent.children) > nth_best_parent:
+                max_similarity = 0.8
+                if result:
+                    max_similarity = max(max_similarity, result)
+                if similarity_with_wrong_answer(self, user_input) > max_similarity:
+                    nth_best_parent += 1
+                    temp_node, best_match, _, user_input = self.parent.search_branch(temp_node, old_user_input, None,
+                                                                                     None, nth_best_parent, False)
+                else:
+                    nth_best_parent = 0
+                    temp_node = self
+            else:
+                nth_best_parent = 0
+                temp_node = self
+        else:
+            temp_node = self
+
+        if result:
+            print(result)
+
+        return temp_node, best_match, nth_best_parent, user_input
+
+
+
 
     def search_other_branches(self, data):
-        similarity = self.base_boarder
+        similarity = self.base_boarder_full_search
         best_match = None
         current_node = self
 
@@ -68,7 +96,7 @@ class Node:
         children_list = current_node.getChildren()
 
         while children_list[0].getLevel() <= self.getLevel():
-            result = children_list[0].getData().similarityValue(data)
+            result = children_list[0].get_data().similarityValue(data)
             if result > similarity and not self == children_list[0]:
                 best_match = children_list[0]
                 similarity = result
@@ -100,7 +128,7 @@ class Node:
         new_child.add_solution(user_answer, user_solution)
 
     def check_for_solutions(self, data):
-        solutions = self.getData().pick_solution(data)
+        solutions = self.get_data().pick_solution(data)
         if solutions is None:
             return None
         for solution in solutions:
@@ -130,33 +158,35 @@ class Node:
         user_solution = get_doc_from_input("*Please enter your solution** >")
         user_question = get_doc_from_input(
             "*Please enter your question which you would like to hear from me for this problem** >")
-        user_answer = get_doc_from_input("*Please enter your answer for your question** >")
+        user_answer = get_doc_from_input("*Please answer this question** >")
         root_children_sorted = self.get_root().get_all_root_children_listed_by_similarity(user_question)
 
         choosen_node = None
         index = 0
         while choosen_node is None:
             if index >= len(root_children_sorted):
-                choosen_node = self.get_root()
+                choosen_node = self
                 break
-            choosen_node = root_children_sorted[index].search_good_node_to_add_solution_to_in_branch(0.8,
+
+            threshold = self.base_boarder_full_search
+            choosen_node = root_children_sorted[index].search_good_node_to_add_solution_to_in_branch(threshold,
                                                                          user_question)
             index += 1
         if self == choosen_node:
             choosen_node.generate_question(user_answer, user_solution, user_question, answer_for_last_question)
         else:
+            print("Your solution is ready, but please answer the last question")
             print(choosen_node)
             answer_for_last_question = get_doc_from_input("*Please enter your answer for the question** >")
             choosen_node.generate_question(user_answer, user_solution, user_question, answer_for_last_question)
         print("dodalem solution")
-        print(choosen_node)
 
     def get_all_root_children_listed_by_similarity(self, user_question):
         root = self.get_root()
         list = root.getChildren()
         listOfSimilarityValue = []
         for i in range(0, len(list)):
-            result = list[i].getData().similarityValueByQuestion(user_question)
+            result = list[i].get_data().similarityValueByQuestion(user_question)
             listOfSimilarityValue.append(result)
         dictionary = self.nodes_and_similarity_value_lists_to_dictionary(listOfSimilarityValue, list)
         sort_orders = sorted(dictionary.items(), key=lambda x: x[0])
@@ -177,7 +207,7 @@ class Node:
         best_match = None
         children_list = self.getChildren()
         while len(children_list) > 0:
-            result = children_list[0].getData().similarityValue(data)
+            result = children_list[0].get_data().similarityValue(data)
             if result > similarity:
                 best_match = children_list[0]
                 similarity = result
