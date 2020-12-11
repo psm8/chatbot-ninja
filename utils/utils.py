@@ -24,6 +24,6 @@ def get_doc_from_input(message):
 
 
 def similarity_with_wrong_answer(self, user_input):
-    self.wrong_answer = [preprocess.preprocess(x) for x in ["That is not what I meant", "You are wrong",
-                                                            "You are misunderstanding me", "You don't understand", "no"]]
-    return max([x.similarity(user_input) for x in self.wrong_answer])
+    self.you_are_wrong_answer = [preprocess.preprocess(x) for x in ["That is not what I meant", "You are wrong",
+                                                            "You are misunderstanding me", "You don't understand"]]
+    return max([x.similarity(user_input) for x in self.you_are_wrong_answer])
